@@ -112,7 +112,9 @@ jobs:
 
       - name: Build Debian package (amd64)
         run: |
-          VERSION="${{ inputs.version }}"
+          RAW_VERSION="${{ inputs.version }}"
+          # 使用 Shell 参数扩展功能，移除字符串开头的 'v'
+          VERSION="${RAW_VERSION#v}"
           ARCH="amd64"
           PKG_NAME="toss_${VERSION}_${ARCH}"
 
@@ -144,7 +146,9 @@ jobs:
 
       - name: Build Debian package (arm64)
         run: |
-          VERSION="${{ inputs.version }}"
+          RAW_VERSION="${{ inputs.version }}"
+          # 使用 Shell 参数扩展功能，移除字符串开头的 'v'
+          VERSION="${RAW_VERSION#v}"
           ARCH="arm64"
           PKG_NAME="toss_${VERSION}_${ARCH}"
 
